@@ -82,6 +82,34 @@ function calculation() {
         }
     }
 
+    //Operacion de la multiplicacion
+    if (this.operator === "*" && inputScreen !== "") {
+        if (valueOne !== 0) {
+            total = valueOne * valueTwo;
+        } else {
+            total = valueTwo;
+        }
+    }
+
+    //Operacion de la division
+    if (this.operator === "/" && inputScreen !== "") {
+        if (valueOne !== 0) {
+            total = valueOne / valueTwo;
+        } else {
+            total = valueTwo;
+        }
+    }
+
+    if (this.operator === "%" && inputScreen.value !== "") {
+        total = valueTwo / 100;
+    }
+
+    if (this.operator === "+/-" && inputScreen.value !== "") {
+        if (valueTwo > 0) {
+            total = -valueTwo;
+        }
+    }
+
     total = transformPointToComma(total);
     this.inputValueMemo = total;
     inputScreen.value = "";
