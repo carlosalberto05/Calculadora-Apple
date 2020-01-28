@@ -1,3 +1,6 @@
+var operator = null;
+var inputValueMemo = 0;
+
 //Primero vamos a leer lo que el usuario presione
 //cuando le den click a algun boton
 function getContentClick(event) {
@@ -18,6 +21,13 @@ const filterAction = value => {
   value === "8" ? addNumberInput(8) : null;
   value === "9" ? addNumberInput(9) : null;
   value === "," ? addNumberInput(',') : null;
+
+  value === "+" ? setOperation('+') : null;
+  value === "-" ? setOperation('-') : null;
+  value === "X" ? setOperation('*') : null;
+  value === "/" ? setOperation('/') : null;
+  value === "%" ? setOperation('%') : null;
+  value === "+/-" ? setOperation('+/-') : null;
 };
 
 //Vamos a cambiar el valor de la screen al presionar algun número
@@ -31,4 +41,29 @@ function addNumberInput(value){
    }
 
    inputScreen.value = inputValue +  value;
+}
+
+//Funcion para guardar la operacion seleccionada y calcular la suma
+function setOperation(operator) {
+    const inputScreenValue = document.getElementsByClassName('calculator__screen')[0].value;
+    this.operator = operator;
+
+    if(inputScreenValue != 0) {
+        calculation();
+    }
+}
+
+function calculation(){
+    const inputScreen = document.getElementsByClassName('calculator__screen')[0];
+    let valueOne = this.inputValueMemo;
+    let valueTwo = inputScreen.value;
+    let total = 0;
+
+    if(this.operator === "+" && inputScreen !== ""){
+        total = valueOne + valueTwo;
+    }
+
+    this.inputValueMemo = total;
+    inputScreen.value = "";
+    inputScreen.placeholder = total;
 }
