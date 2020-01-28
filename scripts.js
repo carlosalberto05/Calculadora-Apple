@@ -73,6 +73,15 @@ function calculation() {
         total = valueOne + valueTwo;
     }
 
+    //Operacion de resta
+    if (this.operator === "-" && inputScreen !== "") {
+        if (valueOne !== 0) {
+            total = valueOne - valueTwo;
+        } else {
+            total = valueTwo;
+        }
+    }
+
     total = transformPointToComma(total);
     this.inputValueMemo = total;
     inputScreen.value = "";
