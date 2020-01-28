@@ -29,7 +29,9 @@ const filterAction = value => {
     value === "%" ? setOperation('%') : null;
     value === "+/-" ? setOperation('+/-') : null;
 
+    value === "AC" ? resetCalculator() : null;
     value === "=" ? calculation() : null;
+
 };
 
 //Vamos a cambiar el valor de la screen al presionar algun número
@@ -39,6 +41,11 @@ function addNumberInput(value) {
 
     if (inputValue === "0" && inputValue.length === 1 && value !== ",") {
         inputScreen.value = value;
+        return;
+    }
+
+    if (inputScreen.value === "" && value === ",") {
+        inputScreen.vale = 0 + value;
         return;
     }
 
@@ -70,6 +77,14 @@ function calculation() {
     this.inputValueMemo = total;
     inputScreen.value = "";
     inputScreen.placeholder = total;
+}
+
+//Es una funcion tipo flecha porque no genera nada, solo operacion
+const resetCalculator = () => {
+    const inputScreen = document.getElementsByClassName('calculator__screen')[0];
+    inputScreen.value = 0;
+    this.inputValueMemo = 0;
+    this.operator = null;
 }
 
 function transformCommaToPoint(value) {
